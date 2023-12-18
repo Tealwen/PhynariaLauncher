@@ -6,17 +6,12 @@ const validUsername         = /^[a-zA-Z0-9_]{1,16}$/
 const basicEmail            = /^\S+@\S+\.\S+$/
 //const validEmail          = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 
-// Login Elements
-const loginCancelContainer  = document.getElementById('loginCancelContainer')
-const loginCancelButton     = document.getElementById('loginCancelButton')
-const loginEmailError       = document.getElementById('loginEmailError')
-const loginUsername         = document.getElementById('loginUsername')
-const loginPasswordError    = document.getElementById('loginPasswordError')
-const loginPassword         = document.getElementById('loginPassword')
-const checkmarkContainer    = document.getElementById('checkmarkContainer')
-const loginRememberOption   = document.getElementById('loginRememberOption')
-const loginButton           = document.getElementById('loginButton')
-const loginForm             = document.getElementById('loginForm')
+
+//Phynaria Element
+const loginUsername         = document.getElementById('pseudo')
+const loginPassword         = document.getElementById('password')
+const loginForm             = document.getElementById('login-form')
+const loginButton           = document.getElementById('loginbtn')
 
 // Control variables.
 let lu = false, lp = false
@@ -51,7 +46,7 @@ function shakeError(element){
  * 
  * @param {string} value The email value.
  */
-function validateEmail(value){
+/*function validateEmail(value){
     if(value){
         if(!basicEmail.test(value) && !validUsername.test(value)){
             showError(loginEmailError, Lang.queryJS('login.error.invalidValue'))
@@ -69,14 +64,14 @@ function validateEmail(value){
         showError(loginEmailError, Lang.queryJS('login.error.requiredValue'))
         loginDisabled(true)
     }
-}
+}*/
 
 /**
  * Validate that the password field is not empty.
  * 
  * @param {string} value The password value.
  */
-function validatePassword(value){
+/*function validatePassword(value){
     if(value){
         loginPasswordError.style.opacity = 0
         lp = true
@@ -88,25 +83,25 @@ function validatePassword(value){
         showError(loginPasswordError, Lang.queryJS('login.error.invalidValue'))
         loginDisabled(true)
     }
-}
+}*/
 
 // Emphasize errors with shake when focus is lost.
-loginUsername.addEventListener('focusout', (e) => {
+/*loginUsername.addEventListener('focusout', (e) => {
     validateEmail(e.target.value)
     shakeError(loginEmailError)
 })
 loginPassword.addEventListener('focusout', (e) => {
     validatePassword(e.target.value)
     shakeError(loginPasswordError)
-})
+})*/
 
 // Validate input for each field.
-loginUsername.addEventListener('input', (e) => {
+/*loginUsername.addEventListener('input', (e) => {
     validateEmail(e.target.value)
 })
 loginPassword.addEventListener('input', (e) => {
     validatePassword(e.target.value)
-})
+})*/
 
 /**
  * Enable or disable the login button.
@@ -141,30 +136,29 @@ function loginLoading(v){
  */
 function formDisabled(v){
     loginDisabled(v)
-    loginCancelButton.disabled = v
     loginUsername.disabled = v
     loginPassword.disabled = v
-    if(v){
+ /*   if(v){
         checkmarkContainer.setAttribute('disabled', v)
     } else {
         checkmarkContainer.removeAttribute('disabled')
     }
-    loginRememberOption.disabled = v
+    loginRememberOption.disabled = v*/
 }
 
 let loginViewOnSuccess = VIEWS.landing
-let loginViewOnCancel = VIEWS.settings
-let loginViewCancelHandler
+//let loginViewOnCancel = VIEWS.settings
+//let loginViewCancelHandler
 
-function loginCancelEnabled(val){
+/*function loginCancelEnabled(val){
     if(val){
         $(loginCancelContainer).show()
     } else {
         $(loginCancelContainer).hide()
     }
-}
+}*/
 
-loginCancelButton.onclick = (e) => {
+/*loginCancelButton.onclick = (e) => {
     switchView(getCurrentView(), loginViewOnCancel, 500, 500, () => {
         loginUsername.value = ''
         loginPassword.value = ''
@@ -174,7 +168,7 @@ loginCancelButton.onclick = (e) => {
             loginViewCancelHandler = null
         }
     })
-}
+}*/
 
 // Disable default form behavior.
 loginForm.onsubmit = () => { return false }
@@ -187,19 +181,19 @@ loginButton.addEventListener('click', () => {
     // Show loading stuff.
     loginLoading(true)
 
-    AuthManager.addMojangAccount(loginUsername.value, loginPassword.value).then((value) => {
+    AuthManager.addPhynariaAccount(loginUsername.value, loginPassword.value).then((value) => {
         updateSelectedAccount(value)
         loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.loggingIn'), Lang.queryJS('login.success'))
         $('.circle-loader').toggleClass('load-complete')
         $('.checkmark').toggle()
         setTimeout(() => {
-            switchView(VIEWS.login, loginViewOnSuccess, 500, 500, async () => {
+            switchView(VIEWS.phynariaLogin, loginViewOnSuccess, 500, 500, async () => {
                 // Temporary workaround
                 if(loginViewOnSuccess === VIEWS.settings){
                     await prepareSettings()
                 }
                 loginViewOnSuccess = VIEWS.landing // Reset this for good measure.
-                loginCancelEnabled(false) // Reset this for good measure.
+                //loginCancelEnabled(false) // Reset this for good measure.
                 loginViewCancelHandler = null // Reset this for good measure.
                 loginUsername.value = ''
                 loginPassword.value = ''

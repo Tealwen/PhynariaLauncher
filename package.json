@@ -1,13 +1,13 @@
 {
-  "name": "helioslauncher",
-  "version": "2.1.0",
-  "productName": "Helios Launcher",
-  "description": "Modded Minecraft Launcher",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/)",
+  "name": "phynarialauncher",
+  "version": "1.0.0",
+  "productName": "PhynariaMC Launcher",
+  "description": "Modded Minecraft Launcher for PhynariaMC",
+  "author": "Daniel Scalzi (https://github.com/dscalzi/) && Droopi29 for UI condig && Sandersonn for UI Deisgn",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/dscalzi/HeliosLauncher",
+  "homepage": "https://phynaria.fr",
   "bugs": {
-    "url": "https://github.com/dscalzi/HeliosLauncher/issues"
+    "url": "https://phynaria.fr"
   },
   "private": true,
   "main": "index.js",
@@ -25,6 +25,8 @@
   "dependencies": {
     "@electron/remote": "^2.1.0",
     "adm-zip": "^0.5.9",
+    "azauth": "1.0.0",
+    "azuriom-auth": "^1.0.1",
     "discord-rpc-patch": "^4.0.1",
     "ejs": "^3.1.9",
     "ejs-electron": "^2.1.1",
@@ -46,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dscalzi/HeliosLauncher.git"
+    "url": "git+https://github.com/Tealwen/PhynariaLauncher.git"
   }
 }

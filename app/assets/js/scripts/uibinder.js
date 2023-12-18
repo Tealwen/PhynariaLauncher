@@ -20,7 +20,8 @@ const VIEWS = {
     login: '#loginContainer',
     settings: '#settingsContainer',
     welcome: '#welcomeContainer',
-    waiting: '#waitingContainer'
+    waiting: '#waitingContainer',
+    phynariaLogin: '#PhynariaLoginContainer'
 }
 
 // The currently shown view container.
@@ -90,9 +91,9 @@ async function showMainUI(data){
             } else {
                 loginOptionsCancelEnabled(false)
                 loginOptionsViewOnLoginSuccess = VIEWS.landing
-                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
-                currentView = VIEWS.loginOptions
-                $(VIEWS.loginOptions).fadeIn(1000)
+                loginOptionsViewOnLoginCancel = VIEWS.phynariaLogin
+                currentView = VIEWS.phynariaLogin
+                $(VIEWS.phynariaLogin).fadeIn(1000)
             }
         }
 

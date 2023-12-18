@@ -1,7 +1,10 @@
 const loginOptionsCancelContainer = document.getElementById('loginOptionCancelContainer')
 const loginOptionMicrosoft = document.getElementById('loginOptionMicrosoft')
 const loginOptionMojang = document.getElementById('loginOptionMojang')
+const loginOptionPhynaria = document.getElementById('loginOptionPhynaria')
 const loginOptionsCancelButton = document.getElementById('loginOptionCancelButton')
+
+
 
 let loginOptionsCancellable = false
 
@@ -33,6 +36,14 @@ loginOptionMojang.onclick = (e) => {
         loginViewOnSuccess = loginOptionsViewOnLoginSuccess
         loginViewOnCancel = loginOptionsViewOnLoginCancel
         loginCancelEnabled(true)
+    })
+}
+
+loginOptionPhynaria.onclick = (e) => {
+    switchView(getCurrentView(), VIEWS.phynariaLogin, 500, 500, () => {
+        loginViewOnSuccess = loginOptionsViewOnLoginSuccess
+        //loginViewOnCancel = loginOptionsViewOnLoginCancel
+        //loginCancelEnabled(true)
     })
 }
 

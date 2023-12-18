@@ -3966,3 +3966,41 @@ input:checked + .toggleSwitchSlider:before {
 .rotating {
     animation: rotating 10s linear infinite;
 }
+
+/*******************************************************************************
+ *                                                                             *
+ * PhynariaLogin                                                *
+ *                                                                             *
+ ******************************************************************************/
+
+
+main {
+        position: fixed;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+        background-color: #ffffff;
+        height: 375px;
+        width: 300px;
+        border-radius: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+}
+
+
+#loginbtn{
+
+    height: 50px;
+    width: 200px;
+    border-radius: 5%;
+    background: linear-gradient(to right, #2196F3, #9C27B0); /* Dégradé du bleu au violet */
+    color: #fff;
+
+}
+
+#logo {
+    margin-left: 3%;
+    margin-top: 3%;
+}
