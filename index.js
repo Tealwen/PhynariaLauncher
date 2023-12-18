@@ -234,7 +234,8 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            webSecurity: false,
         },
         backgroundColor: '#171614'
     })
@@ -248,6 +249,8 @@ function createWindow() {
 
     win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
     win.webContents.openDevTools();
+
+
 
     /*win.once('ready-to-show', () => {
         win.show()
