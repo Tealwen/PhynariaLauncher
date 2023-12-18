@@ -1,6 +1,6 @@
 {
   "name": "phynarialauncher",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "productName": "PhynariaMC Launcher",
   "description": "Modded Minecraft Launcher for PhynariaMC",
   "author": "Daniel Scalzi (https://github.com/dscalzi/) && Droopi29 for UI condig && Sandersonn for UI Deisgn",
@@ -25,7 +25,6 @@
   "dependencies": {
     "@electron/remote": "^2.1.0",
     "adm-zip": "^0.5.9",
-    "azauth": "1.0.0",
     "azuriom-auth": "^1.0.1",
     "discord-rpc-patch": "^4.0.1",
     "ejs": "^3.1.9",
@@ -39,7 +38,7 @@
     "jquery": "^3.7.1",
     "lodash.merge": "^4.6.2",
     "semver": "^7.5.4",
-    "toml": "^3.0.0"
+    "toml": "^3.0.0",
   },
   "devDependencies": {
     "electron": "^27.1.3",
