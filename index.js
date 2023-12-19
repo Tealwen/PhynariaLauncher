@@ -252,9 +252,9 @@ function createWindow() {
 
 
 
-    /*win.once('ready-to-show', () => {
+    win.once('ready-to-show', () => {
         win.show()
-    })*/
+    })
 
     win.removeMenu()
 
