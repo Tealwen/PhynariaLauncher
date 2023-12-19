@@ -235,7 +235,7 @@ function createWindow() {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
-            //webSecurity: false,
+            webSecurity: false,
         },
         backgroundColor: '#171614'
     })
