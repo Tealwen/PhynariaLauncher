@@ -8,10 +8,10 @@ const basicEmail            = /^\S+@\S+\.\S+$/
 
 
 //Phynaria Element
-const loginUsername         = document.getElementById('pseudo')
+const loginUsername         = document.getElementById('username')
 const loginPassword         = document.getElementById('password')
 const loginForm             = document.getElementById('login-form')
-const loginButton           = document.getElementById('loginbtn')
+const loginButton           = document.getElementById('login_button')
 
 // Control variables.
 let lu = false, lp = false

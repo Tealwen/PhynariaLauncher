@@ -227,15 +227,14 @@ let win
 function createWindow() {
 
     win = new BrowserWindow({
-        width: 980,
-        height: 552,
+        width: 1080,
+        height: 720,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
-            webSecurity: false,
         },
         backgroundColor: '#171614'
     })

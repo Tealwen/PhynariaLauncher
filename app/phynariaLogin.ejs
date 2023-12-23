@@ -1,41 +1,28 @@
 <div id="PhynariaLoginContainer" style="display: none;">
-    <img id="logo" src="assets/images/logo.png" width="262" height="157">
-    <main>
-        <div class="container">
-            <div class="row">
-                <center>
-                <form class="col s12" id="login-form">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="pseudo" type="text" class="validate">
-                            <label for="email">Pseudo</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Mot de passe</label>
-                        </div>
+    <div id="login_panel">
+        
 
-                        <a href="#">Mot de passe oublié ?</a>
+        <img id="barre" src="assets/images/UI/barre.png" width="370">
 
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
+        <img src="assets/images/logo.png" id="logo" width="224" height="124">
 
-                            <button id="loginbtn" class="waves-effect waves-light btn gradient-btn" type="button">Se connecter
-                                <i class="material-icons right">send</i>
-                            </button>
+        <form class="col s12" id="login-form">
+            <div id="input_login">
+                <input id="username" type="text" placeholder="Pseudo | Email" >
+    
+                <input  id="password" type="password"  placeholder="Mot de passe">
+                <br>
+                <a href="https://phynaria.fr/user/password/reset" id="forgot_password">Mot de passe oublié ?</a>
+            </div> 
+        </form>
 
-                        </div>
+        
+        
+    
+        <button  class="btn-floating btn-large waves-effect waves-light red" id="login_button">CONNEXION</button>
+        <a href="https://phynaria.fr/user/register" id="no_account">Pas de compte ? Inscrivez vous ici !</a>
 
-                        <a href="https://phynaria.fr/user/register">Pas encore de compte ? <br /> Inscrivez-vous</a>
-
-                    </div>
-                </form>
-                </center>
-            </div>
-        </div>
-    </main>
+        <img src="assets/images/UI/barre.png" width="370">
+    </div>
 </div>
 <script src="./assets/js/scripts/login.js"></script>
