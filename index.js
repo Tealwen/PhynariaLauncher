@@ -112,7 +112,7 @@ app.disableHardwareAcceleration()
 const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
 
 // Microsoft Auth Login
-/*let msftAuthWindow
+let msftAuthWindow
 let msftAuthSuccess
 let msftAuthViewSuccess
 let msftAuthViewOnClose
@@ -218,7 +218,7 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
     
     msftLogoutWindow.removeMenu()
     msftLogoutWindow.loadURL('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
-})*/
+})
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
