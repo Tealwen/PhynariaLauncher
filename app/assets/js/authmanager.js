@@ -49,12 +49,15 @@ async function validateSelectedPhynariaAccount(){
     const client = new AuthClient('https://phynaria.fr')
     const current = ConfigManager.getSelectedAccount();
 
+    console.log(current.accessToken)
+
     const reponse = client.verify(current.accessToken);
 
-    if (reponse.status == 'success') {  
-        log.info('Account access token validated.')
+    if((await reponse).accessToken === current.accessToken) {
+        console.log("FDP")
         return true;
     }
+    
     
 }
 
