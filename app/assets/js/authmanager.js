@@ -26,7 +26,7 @@ const passwords = 'France1789**/';
 exports.addPhynariaAccount = async function(username, password) {
   try {
     const instance = axios.create({
-      baseURL: 'https://new.phynaria.fr',
+      baseURL: 'https://phynaria.fr',
       headers: {
         'X-API-KEY': '6b825e81d47b2ca0c24b623a156284dd',
         'Content-Type': 'multipart/form-data' // Déplacer l'en-tête ici
@@ -71,7 +71,7 @@ async function validateSelectedPhynariaAccount(){
 
   try {
     const instance = axios.create({
-      baseURL: 'https://new.phynaria.fr',
+      baseURL: 'https://phynaria.fr',
       headers: {
         'X-API-KEY': '6b825e81d47b2ca0c24b623a156284dd',
         'Content-Type': 'multipart/form-data' // Déplacer l'en-tête ici
