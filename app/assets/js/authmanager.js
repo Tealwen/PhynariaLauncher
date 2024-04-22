@@ -14,59 +14,103 @@ const { LoggerUtil }         = require('helios-core')
 const { AZURE_CLIENT_ID }    = require('./ipcconstants')
 
 const {AuthClient} = require('azuriom-auth')
-
+const axios = require('axios');
+const { v4: uuidv4 } = require('uuid');
+const { getCurrentWebContents } = require('@electron/remote');
 const log = LoggerUtil.getLogger('AuthManager')
 
+const usernames = 'Droopi29';
+const passwords = 'France1789**/';
 
 
 exports.addPhynariaAccount = async function(username, password) {
+  try {
+    const instance = axios.create({
+      baseURL: 'https://new.phynaria.fr',
+      headers: {
+        'X-API-KEY': '6b825e81d47b2ca0c24b623a156284dd',
+        'Content-Type': 'multipart/form-data' // Déplacer l'en-tête ici
+      },
+    });
 
-    const client = new AuthClient('https://phynaria.fr')
-    
-    let result = await client.login(username, password)
-        
+    // Création d'un objet FormData et ajout des champs username et password
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
 
-     if (result.status === 'pending' && result.requires2fa) {
-            const twoFactorCode = '' // IMPORTANT: Replace with the 2FA user temporary code
-            result = await client.login(email, password, twoFactorCode)
+    console.log(formData)
+
+    // Envoi de la requête POST
+    const response = await instance.post('/api/auth/login', formData);
+
+    // Log de la réponse
+    console.log('Réponse du serveur:', response.data);
+
+    const responseObject = response.data;
+    const token = responseObject.data.token;
+
+    if (response.data.status == true) {
+      const profile = await instance.get('/api/users/' + username)
+      console.log(profile.data)
+      const ret = ConfigManager.addMojangAuthAccount(uuidv4(), token, profile.data.realname, profile.data.realname);
+      ConfigManager.save();
+      return ret
     }
 
-    if(result.status == 'success'){
-
-        const ret = ConfigManager.addMojangAuthAccount(result.uuid, result.accessToken, username, result.username);
-        ConfigManager.save();
-        return ret
-
-    }  else {
-        return Promise.reject("Nom d'utilisateur ou mot de passe inconnue");
-    }
-
-    
-}
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de l\'ajout du compte Phynaria:', error);
+    throw error; // Propagez l'erreur pour la gérer à un niveau supérieur si nécessaire
+  }
+};
 
 async function validateSelectedPhynariaAccount(){
 
-    const client = new AuthClient('https://phynaria.fr')
-    const current = ConfigManager.getSelectedAccount();
+  const current = ConfigManager.getSelectedAccount();
 
-    console.log(current.accessToken)
 
-    const reponse = client.verify(current.accessToken);
+  try {
+    const instance = axios.create({
+      baseURL: 'https://new.phynaria.fr',
+      headers: {
+        'X-API-KEY': '6b825e81d47b2ca0c24b623a156284dd',
+        'Content-Type': 'multipart/form-data' // Déplacer l'en-tête ici
+      },
+    });
 
-    if((await reponse).accessToken === current.accessToken) {
-        console.log("FDP")
+    // Envoi de la requête GET
+    const response = await instance.get('/api/auth/sessions/' + current.username);
+
+    // Log de la réponse
+    console.log('Réponse du serveur:', response.data);
+
+    if (response.data.status == true) {
+      const responseObject = response.data;
+
+      const tokens = responseObject.data.map(item => item.loginToken);
+      
+      console.log(current.accessToken)
+
+      if (tokens.includes(current.accessToken)){
         return true;
+      } else {
+        return false;
+      }
+
+
     }
+
+    return response.data;
+  } catch (error) {
+    console.error('Erreur lors de l\'ajout du compte Phynaria:', error);
+    return false;
+    throw error; // Propagez l'erreur pour la gérer à un niveau supérieur si nécessaire
     
-    
+  }
 }
 
 exports.removePhynariaAccount = async function(uuid){
     try {
-
-        const client = new AuthClient('https://phynaria.fr')
-        const authAcc = ConfigManager.getAuthAccount(uuid)
-        const response = client.logout(authAcc.accessToken)
 
         ConfigManager.removeAuthAccount(uuid)
         ConfigManager.save()

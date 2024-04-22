@@ -2,7 +2,7 @@ const remoteMain = require('@electron/remote/main')
 remoteMain.initialize()
 
 // Requirements
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu, shell, session } = require('electron')
 const autoUpdater                       = require('electron-updater').autoUpdater
 const ejse                              = require('ejs-electron')
 const fs                                = require('fs')
@@ -235,6 +235,7 @@ function createWindow() {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
+            webSecurity: false,
         },
         backgroundColor: '#171614'
     })
@@ -343,6 +344,9 @@ function getPlatformIcon(filename){
     return path.join(__dirname, 'app', 'assets', 'images', `${filename}.${ext}`)
 }
 
+app.commandLine.appendSwitch('disable-features', 'SameSiteByDefaultCookies');
+
+
 app.on('ready', createWindow)
 app.on('ready', createMenu)
 
@@ -361,3 +365,5 @@ app.on('activate', () => {
         createWindow()
     }
 })
+
+
