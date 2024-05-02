@@ -304,8 +304,8 @@ function populateAccountListings(){
     const accounts = Array.from(Object.keys(accountsObj), v=>accountsObj[v])
     let htmlString = ''
     for(let i=0; i<accounts.length; i++){
-        htmlString += `<button class="accountListing" uuid="${accounts[i].uuid}" ${i===0 ? 'selected' : ''}>
-            <img src="https://mc-heads.net/head/${accounts[i].uuid}/40">
+        htmlString += `<button class="accountListing" uuid="${accounts[i].displayName}" ${i===0 ? 'selected' : ''}>
+            <img src="https://mc-heads.net/head/droopi29/left${accounts[i].displayName}/40">
             <div class="accountListingName">${accounts[i].displayName}</div>
         </button>`
     }

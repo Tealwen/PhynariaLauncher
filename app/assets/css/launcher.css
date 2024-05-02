@@ -2855,10 +2855,10 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Logo image. */
 #image_seal {
-    height: 70px;
+    height: 90px;
     width: auto;
     position: relative;
-    border: 2px solid white;
+    #border: 2px solid white;
     box-sizing: border-box;
     border-radius: 50%;
 }
@@ -2866,8 +2866,8 @@ input:checked + .toggleSwitchSlider:before {
 /* Logo container styles. */
 #image_seal_container {
     position: relative;
-    height: 70px;
-    width: 70px;
+    height: 90px;
+    width: 90px;
     border-radius: 50%;
     margin-top: 50px;
 }
@@ -2970,8 +2970,8 @@ input:checked + .toggleSwitchSlider:before {
 
 /* User profile avatar container. */
 #avatarContainer {
-    border-radius: 50%;
-    border: 2px solid #cad7e1;
+    #border-radius: 0%;
+    #border: 2px solid #cad7e1;
     box-sizing: border-box;
     background: rgba(1, 2, 1, 0.5);
     height: 70px;
@@ -3324,6 +3324,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Button which opens the news view. */
 #newsButton {
+    display: none;
     background: none;
     border: none;
     cursor: pointer;

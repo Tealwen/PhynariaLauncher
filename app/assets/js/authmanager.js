@@ -19,9 +19,6 @@ const { v4: uuidv4 } = require('uuid');
 const { getCurrentWebContents } = require('@electron/remote');
 const log = LoggerUtil.getLogger('AuthManager')
 
-const usernames = 'Droopi29';
-const passwords = 'France1789**/';
-
 
 exports.addPhynariaAccount = async function(username, password) {
   try {
@@ -37,11 +34,12 @@ exports.addPhynariaAccount = async function(username, password) {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
+    formData.append('ip', '0.0.0.0')
 
     console.log(formData)
 
     // Envoi de la requête POST
-    const response = await instance.post('/api/auth/login', formData);
+    const response = await instance.post('api/auth/sessions/' + username, formData);
 
     // Log de la réponse
     console.log('Réponse du serveur:', response.data);
@@ -85,11 +83,13 @@ async function validateSelectedPhynariaAccount(){
     console.log('Réponse du serveur:', response.data);
 
     if (response.data.status == true) {
+
       const responseObject = response.data;
 
       const tokens = responseObject.data.map(item => item.loginToken);
       
       console.log(current.accessToken)
+      console.log(tokens)
 
       if (tokens.includes(current.accessToken)){
         return true;
@@ -104,8 +104,6 @@ async function validateSelectedPhynariaAccount(){
   } catch (error) {
     console.error('Erreur lors de l\'ajout du compte Phynaria:', error);
     return false;
-    throw error; // Propagez l'erreur pour la gérer à un niveau supérieur si nécessaire
-    
   }
 }
 

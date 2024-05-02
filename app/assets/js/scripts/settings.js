@@ -545,7 +545,7 @@ function populateAuthAccounts(){
 
         const accHtml = `<div class="settingsAuthAccount" uuid="${acc.uuid}">
             <div class="settingsAuthAccountLeft">
-                <img class="settingsAuthAccountImage" alt="${acc.displayName}" src="https://phynaria.fr/api/skin-api/avatars/face/${acc.displayName}">
+                <img class="settingsAuthAccountImage" alt="${acc.displayName}" src="https://mc-heads.net/avatar/${acc.displayName}">
             </div>
             <div class="settingsAuthAccountRight">
                 <div class="settingsAuthAccountDetails">
