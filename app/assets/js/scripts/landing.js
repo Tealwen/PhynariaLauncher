@@ -613,6 +613,7 @@ async function dlAsync(login = true) {
             proc.stderr.on('data', gameErrorListener)
 
             setLaunchDetails(Lang.queryJS('landing.dlAsync.doneEnjoyServer'))
+            setLaunchEnabled(false)
 
             // Init Discord Hook
             if(distro.rawDistribution.discord != null && serv.rawServer.discord != null){
@@ -620,12 +621,12 @@ async function dlAsync(login = true) {
                 hasRPC = true
                 proc.on('close', (code, signal) => {
                     loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
+                    setLaunchEnabled(true)
                     DiscordWrapper.shutdownRPC()
                     hasRPC = false
                     proc = null
                 })
             }
-
         } catch(err) {
 
             loggerLaunchSuite.error('Error during launch', err)

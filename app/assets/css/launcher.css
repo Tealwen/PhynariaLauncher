@@ -3991,6 +3991,8 @@ input:checked + .toggleSwitchSlider:before {
 #logo {
     display: block;
     margin: 10px auto; /* Simplify centering */
+    width: 140;
+    height: 120;
 }
 
 #input_login {
